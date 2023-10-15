@@ -152,10 +152,15 @@ void Bird::destroy() {
 // CONTROLA A SUBIDA E DESCIDA E ACORDO COM A TECLA ESPAÇO
 void Bird::update(GameData const &gameData, float deltaTime) {
   // Rotate
-  // if (gameData.m_input[gsl::narrow<size_t>(Input::Left)])
-  //   m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);
-  // if (gameData.m_input[gsl::narrow<size_t>(Input::Right)])
-  //   m_rotation = glm::wrapAngle(m_rotation - 4.0f * deltaTime);
+  if (gameData.m_input[gsl::narrow<size_t>(Input::Up)]){
+    // m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);
+    m_translation = glm:: vec2(m_translation.x , m_translation.y + 1.0f * deltaTime );
+  }
+  if (gameData.m_input[gsl::narrow<size_t>(Input::Down)]){
+    // m_rotation = glm::wrapAngle(m_rotation - 4.0f * deltaTime);
+    m_translation = glm:: vec2(m_translation.x , m_translation.y - 1.0f * deltaTime);
+    }
+    
 
   // Apply thrust
   if (gameData.m_input[gsl::narrow<size_t>(Input::Up)] &&
