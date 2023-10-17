@@ -25,6 +25,7 @@ private:
   GameData m_gameData;
 
   Bird m_bird;
+  Pipes m_pipes;
 
   abcg::Timer m_restartWaitTimer;
 

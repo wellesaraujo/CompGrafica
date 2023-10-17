@@ -85,6 +85,7 @@ void Window::restart() {
   m_gameData.m_state = State::Playing;
 
   m_bird.create(m_objectsProgram);
+  m_pipes.create(m_objectsProgram, 4); // define a quantidade de canos que deve ser criado
 }
 
 void Window::onUpdate() {
@@ -98,12 +99,14 @@ void Window::onUpdate() {
   }
 
   m_bird.update(m_gameData, deltaTime);
+  m_pipes.update(m_bird, deltaTime);
 }
 
 void Window::onPaint() {
   abcg::glClear(GL_COLOR_BUFFER_BIT);
   abcg::glViewport(0, 0, m_viewportSize.x, m_viewportSize.y);
 
+  m_pipes.paint();
   m_bird.paint(m_gameData);
 }
 
@@ -143,5 +146,6 @@ void Window::onResize(glm::ivec2 const &size) {
 void Window::onDestroy() {
   abcg::glDeleteProgram(m_objectsProgram);
 
+  m_pipes.destroy();
   m_bird.destroy();
 }
